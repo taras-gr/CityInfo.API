@@ -44,6 +44,7 @@ namespace CityInfo.API
 
 #if DEBUG
             services.AddTransient<IMailService, LocalMailService>();
+            services.AddScoped<ICityInfoRepository, CityInfoRepository>();
 #else
             services.AddTransient<IMailService, CloudMailService>();
 #endif
@@ -72,7 +73,7 @@ namespace CityInfo.API
             DbInitializer.Seed(cityInfoContext);
 
             app.UseStatusCodePages();
-
+            
             app.UseMvc();
 
             //app.Run(async (context) =>
